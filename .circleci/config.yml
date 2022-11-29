@@ -150,8 +150,8 @@ jobs:
             kubectl get pod -o wide
             kubectl apply -f hello_world_service.yml
             kubectl get services
-             # kubectl rollout status deployments/capstoneproject
-            kubectl describe svc capstoneproject
+             # kubectl rollout status deployments/aws-devops-nd-capstone
+            kubectl describe svc aws-devops-nd-capstone
 
 workflows:
   version: 2.1
@@ -160,3 +160,7 @@ workflows:
       - build-docker-image
       - deploy-docker-image:
           requires: [build-docker-image]
+      - eks-deploy:
+          requires: [deploy-docker-image]
+      - eks-app-deploy:
+          requires: [eks-deploy]
