@@ -71,18 +71,6 @@ jobs:
           command: |
             # installing AWS CLI
             pip3 install awscli
-      - setup_aws_cli:
-            aws-access-key-id: $AWS_ACCESS_KEY
-            aws-secret-access-key: $AWS_SECRET_ACCESS
-            aws-region: $AWS_DEFAULT_REGION
-      
-      - run:
-          name: "Testing AWS configuration"
-          command: |
-            # Show what's there now
-            aws configure list
-            # Retrieve security groups
-            current_security_group=$(aws ec2 describe-security-groups --profile profilename --group-id ${GROUP_ID})
 
       - run:
           name: iam-authenticator Installation
@@ -90,9 +78,9 @@ jobs:
             curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator
             chmod +x ./aws-iam-authenticator
             mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
-            # echo AWS_ACCESS_KEY=$AWS_ACCESS_KEY
-            # echo AWS_SECRET_ACCESS=$AWS_SECRET_ACCESS
-            # echo AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+            echo AWS_ACCESS_KEY=$AWS_ACCESS_KEY
+            echo AWS_SECRET_ACCESS=$AWS_PRIVATE_KEY
+            echo AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
             aws configure list
          
       - run:
