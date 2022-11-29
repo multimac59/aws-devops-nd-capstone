@@ -54,9 +54,10 @@ jobs:
           name: uploading docker image  
           command: |
             docker image ls	 
-            docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" docker.io
             dockerpath=hello-world-app:v1
             docker push $dockerpath
+            docker push multimac59/hello-world-app:v1
 
 workflows:
   version: 2.1
