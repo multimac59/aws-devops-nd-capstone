@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: aws-devops-nd-capstone
-        image: multimac59/hello-world-app:v1
+        image: multimac59/hello-world-app:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
