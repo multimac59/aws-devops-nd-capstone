@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Building Docker Image
           command: |
-            docker build -t hello-world-app:v1 .
+            docker build -t multimac59/hello-world-app:v1 -f Dockerfile .
       - run:
           name: Listing Docker Image
           command: |
