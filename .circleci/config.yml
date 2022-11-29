@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Building Docker Image
           command: |
-            docker build -t $IMAGE_NAME:$IMAGE_VERSION .
+            docker build -t hello-world-app:v1 .
       - run:
           name: Listing Docker Image
           command: |
@@ -55,7 +55,7 @@ jobs:
           command: |
             docker image ls	 
             docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-            dockerpath=$IMAGE_NAME:$IMAGE_VERSION
+            dockerpath=hello-world-app:v1
             docker push $dockerpath
 
 workflows:
