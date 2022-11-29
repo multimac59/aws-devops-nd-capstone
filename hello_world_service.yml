@@ -1,0 +1,12 @@
+# Create Load balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: aws-devops-nd-capstone
+spec:
+  selector:
+    app: aws-devops-nd-capstone
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: LoadBalancer

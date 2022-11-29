@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-devops-nd-capstone
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aws-devops-nd-capstone
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate          
+  template:
+    metadata:
+      labels:
+        app: aws-devops-nd-capstone
+    spec:
+      containers:
+      - name: aws-devops-nd-capstone
+        image: multimac59/hello-world-app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        
