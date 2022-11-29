@@ -147,7 +147,7 @@ jobs:
       - run:
           name: deploy the docker container in aws eks cluster
           command: |
-            aws eks --region us-east-1 update-kubeconfig --name $EKSCLUSTER_NAME
+            aws eks --region us-east-1 update-kubeconfig --name $EKS_CLUSTER_NAME
             kubectl apply -f hello_world_deployment.yml
             kubectl get nodes
             kubectl get deployment
