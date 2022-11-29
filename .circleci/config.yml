@@ -57,7 +57,6 @@ jobs:
             docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" docker.io
             dockerpath=$DOCKER_USER/$IMAGE_NAME:$IMAGE_VERSION
             docker push $dockerpath
-            # docker push multimac59/hello-world-app:v1
 
 workflows:
   version: 2.1
