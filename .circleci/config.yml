@@ -32,8 +32,36 @@ jobs:
             . devops/bin/activate
             make lint
 
+  # Deploy docker           
+  deploy-docker-image:           
+    environment:
+      IMAGEVERSION: v2
+    docker:
+      - image: circleci/golang:1.15
+     
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Building Docker Image
+          command: |
+            docker build -t $IMAGENAME:$IMAGEVERSION .
+      - run:
+          name: Listing Docker Image
+          command: |
+            docker image ls
+      - run:
+          name: uploading docker image  
+          command: |
+            docker image ls	 
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+            dockerpath=$IMAGENAME:$IMAGEVERSION
+            docker push $dockerpath
+
 workflows:
   version: 2.1
   default:
     jobs:
       - build-docker-image
+      - deploy-docker-image:
+          requires: [build-docker-image]
